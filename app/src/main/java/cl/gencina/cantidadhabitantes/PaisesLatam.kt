@@ -1,6 +1,5 @@
 package cl.gencina.cantidadhabitantes
 
-
 data class Pais(val nombre: String, val poblacion: Long, val imgUrl: String)
 
 class PaisesLatam {

@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import cl.gencina.cantidadhabitantes.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PaisCallback {
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,10 +18,11 @@ class MainActivity : AppCompatActivity() {
     private fun initAdapter() {
         val adapter = RecyclerViewAdapter()
         adapter.setData(PaisesLatam.paises)
+        adapter.setPaisCallback(this)
         binding.rvPaises.adapter = adapter
     }
 
-    fun showData(pais: Pais){
-        binding.tvData.text = "La cantidad de habitantes de ${pais.nombre} es de ${pais.poblacion}"
+    override fun mostrarPais(data: String) {
+        binding.tvData.text = data
     }
 }

@@ -8,6 +8,7 @@ import coil.load
 
 class RecyclerViewAdapter():RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     var listaPaises: List<Pais> = mutableListOf()
+    var callback:PaisCallback?= null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,6 +36,10 @@ class RecyclerViewAdapter():RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
         this.listaPaises = listaPaises
     }
 
+    fun setPaisCallback(c:PaisCallback){
+        this.callback = c
+    }
+
     inner class ViewHolder (private val binding:ItemBinding): RecyclerView.ViewHolder(binding.root){
 
        fun bind(item: Pais){
@@ -42,8 +47,13 @@ class RecyclerViewAdapter():RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
            binding.ivBandera.load(item.imgUrl)
 
            binding.cvPais.setOnClickListener {
-               //MainActivity().showData(item)
+               val data = "La cantidad de habitantes de ${item.nombre} es de ${item.poblacion}"
+               callback?.mostrarPais(data)
            }
        }
     }
+}
+
+interface PaisCallback{
+    fun mostrarPais(data: String)
 }
