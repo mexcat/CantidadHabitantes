@@ -36,10 +36,6 @@ class RecyclerViewAdapter():RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
         this.listaPaises = listaPaises
     }
 
-    fun setPaisCallback(c:PaisCallback){
-        this.callback = c
-    }
-
     inner class ViewHolder (private val binding:ItemBinding): RecyclerView.ViewHolder(binding.root){
 
        fun bind(item: Pais){
